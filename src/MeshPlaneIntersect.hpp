@@ -2,6 +2,10 @@
 #include <vector>
 #include <array>
 #include <map>
+#include <algorithm>
+
+// NOTE (@vasia): This was added by me (@charkops), remove if unnecessary
+#include <iostream>
 
 // NOTE (@vasia): Added by me (@charkops): Remove if unwanted
 #include <algorithm>
