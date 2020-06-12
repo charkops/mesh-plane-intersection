@@ -169,7 +169,7 @@ private:
 	}
 
 	static EdgePath GetEdgePath(CrossingFaceMap& crossingFaces) {
-		CrossingFaceMap::const_iterator &currentFace = crossingFaces.begin();
+		auto &currentFace = crossingFaces.begin();
 		EdgePath edgePath({ currentFace->first });
 		int closingVertex(currentFace->second);
 		while (GetNextPoint(currentFace, crossingFaces)) {
