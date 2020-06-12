@@ -3,6 +3,10 @@
 #include <array>
 #include <map>
 
+// NOTE (@vasia): Added by me (@charkops): Remove if unwanted
+#include <algorithm>
+#include <iostream>
+
 template <class FloatType, class IndexType>
 class MeshPlaneIntersect {
 
@@ -23,6 +27,16 @@ public:
 	struct Path3D {
 		std::vector<Vec3D> points;
 		bool isClosed = false;
+
+		// NOTE (@vasia): Added by me (@charkops): Remove if unwanted
+		friend std::ostream & operator << (std::ostream &os, const Path3D &path) {
+			std::cout << "Points:" << '\n';
+			for (const auto point : path.points) {
+				std::cout << "(" << point[0] << ", " << point[1] << ", " << point[2] << ")\n";
+			}
+			std::cout << "EndPoints";
+			return os;
+		};		
 	};
 
 	static std::vector<Path3D> Intersect(const Mesh& mesh, const Plane& plane) {
@@ -156,7 +170,7 @@ private:
 	}
 
 	static EdgePath GetEdgePath(CrossingFaceMap& crossingFaces) {
-		auto currentFace = crossingFaces.begin();
+		CrossingFaceMap::const_iterator currentFace = crossingFaces.begin();
 		EdgePath edgePath({ currentFace->first });
 		int closingVertex(currentFace->second);
 		while (GetNextPoint(currentFace, crossingFaces)) {
